@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import pytest
 
-from lab1 import apply_discount, calculate_total, transform_all
+from lab1.lab1 import apply_discount, calculate_total, transform_all
 
 
 def test_discount_returns_expected_prices() -> None:
@@ -19,9 +19,10 @@ def test_discount_does_not_change_input() -> None:
     assert prices == [Decimal("100.00"), Decimal("59.90")]
 
 
-def test_invalid_discount_raises_error() -> None:
+@pytest.mark.parametrize("percent", [-1, 101])
+def test_invalid_discount_raises_error(percent: int) -> None:
     with pytest.raises(ValueError):
-        apply_discount((Decimal("10.00"),), 101)
+        apply_discount((Decimal("10.00"),), percent)
 
 
 def test_higher_order_function() -> None:

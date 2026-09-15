@@ -1,23 +1,29 @@
-# Lab 1 — Основи функціонального програмування
+# Lab 1 Основи ФП у Python
 
-Лабораторна робота з курсу «Функціональне програмування на Python».
+Варіант: 2
 
-## Що реалізовано
+## Мета
 
-- чисту функцію `apply_discount`, яка не змінює вхідні ціни;
-- функцію вищого порядку `transform_all` з `typing.Callable`;
-- чисту функцію `calculate_total`;
-- тести `pytest` для коректності та перевірки відсутності мутації.
+Ознайомитися з чистими функціями, референтною прозорістю, побічними ефектами та функціями вищого порядку в Python.
 
-## Запуск програми
+## Реалізація
+
+- `lab1.py` містить чисті функції `apply_discount` і `calculate_total`;
+- `transform_all` приймає функцію як аргумент через `typing.Callable`;
+- `test_lab1.py` перевіряє результат, відсутність мутації та помилкові значення знижки.
+
+## Запуск
 
 ```powershell
-python lab1.py
+python lab1/lab1.py
 ```
 
-## Запуск тестів
+## Тести, стиль і типи
 
 ```powershell
-python -m pip install -r requirements.txt
-python -m pytest -q
+python -m pip install -r lab1/requirements-dev.txt
+python -m pytest lab1 -q
+python -m black --check lab1
+python -m ruff check lab1
+python -m mypy lab1
 ```
