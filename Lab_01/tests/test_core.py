@@ -5,6 +5,7 @@ from copy import deepcopy
 from core import (
     Employee,
     calculate_base_pay,
+    compose,
     default_bonus_policy,
     default_tax_policy,
     is_active_employee,
@@ -30,6 +31,14 @@ def sample_employees() -> list[Employee]:
             "rate": 250.0,
             "bonus": 0.0,
             "is_active": False,
+        },
+        {
+            "id": 3,
+            "name": "Дмитро",
+            "hours": 170.0,
+            "rate": 180.0,
+            "bonus": 1500.0,
+            "is_active": True,
         },
     ]
 
@@ -72,7 +81,20 @@ def test_empty_input() -> None:
 
 
 def test_calculation_correctness() -> None:
-    """Перевірка базових обчислень."""
-    assert calculate_base_pay(10.0, 100.0) == 1000.0
-    assert default_bonus_policy(1000.0, 200.0) == 1200.0
-    assert default_tax_policy(1000.0) == 805.0
+    """Перевірка точності обчислень базової ставки, бонусу та податку."""
+    base = calculate_base_pay(100.0, 150.0)
+    assert base == 15000.0
+
+    gross = default_bonus_policy(base, 1000.0)
+    assert gross == 16000.0
+
+    net = default_tax_policy(gross)
+    assert net == round(16000.0 * 0.805, 2)
+
+
+def test_compose() -> None:
+    """Перевірка коректності роботи функції композиції."""
+    add_ten = lambda x: x + 10
+    double = lambda x: x * 2
+    composed = compose(double, add_ten)
+    assert composed(5) == 30

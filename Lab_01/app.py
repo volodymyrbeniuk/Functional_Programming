@@ -18,7 +18,9 @@ def render_report(result: dict[str, object]) -> None:
     employees = result.get("employees", [])
     if isinstance(employees, list):
         for emp in employees:
-            print(f"ID {emp['id']}: {emp['name']} -> До виплати: {emp['salary']} грн")
+            print(
+                f"ID {emp['id']}: {emp['name']} -> До виплати: {emp['salary']} грн"
+            )
 
 
 def main() -> None:
