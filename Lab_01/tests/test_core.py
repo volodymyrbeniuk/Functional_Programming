@@ -6,8 +6,6 @@ from core import (
     Employee,
     calculate_payroll_pure,
     compose,
-    default_bonus_policy,
-    default_tax_policy,
     make_payroll_processor,
     stamp_total,
 )
@@ -15,7 +13,13 @@ from core import (
 
 def sample_employees() -> list[Employee]:
     return [
-        {"id": 1, "name": "Олександр", "hours": 160.0, "rate": 200.0, "is_active": True},
+        {
+            "id": 1,
+            "name": "Олександр",
+            "hours": 160.0,
+            "rate": 200.0,
+            "is_active": True,
+        },
         {"id": 2, "name": "Ірина", "hours": 80.0, "rate": 250.0, "is_active": False},
         {"id": 3, "name": "Дмитро", "hours": 170.0, "rate": 180.0, "is_active": True},
     ]

@@ -4,7 +4,7 @@
 """
 
 from collections.abc import Callable, Iterable
-from typing import TypeVar, TypedDict
+from typing import TypedDict, TypeVar
 
 A = TypeVar("A")
 B = TypeVar("B")
@@ -104,9 +104,7 @@ def make_payroll_processor(
         for emp in employees:
             if not emp.get("is_active", False):
                 continue
-            base = calculate_base_pay(
-                emp.get("hours", 0.0), emp.get("rate", 0.0)
-            )
+            base = calculate_base_pay(emp.get("hours", 0.0), emp.get("rate", 0.0))
             if not accept(base):
                 continue
             net = apply_tax(apply_bonus(base))

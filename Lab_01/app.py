@@ -23,7 +23,13 @@ def render_report(result: dict[str, object]) -> None:
 def main() -> None:
     """Точка входу програми."""
     employees: list[Employee] = [
-        {"id": 1, "name": "Володимир", "hours": 160.0, "rate": 300.0, "is_active": True},
+        {
+            "id": 1,
+            "name": "Володимир",
+            "hours": 160.0,
+            "rate": 300.0,
+            "is_active": True,
+        },
         {"id": 2, "name": "Тарас", "hours": 120.0, "rate": 200.0, "is_active": False},
         {"id": 3, "name": "Оксана", "hours": 150.0, "rate": 280.0, "is_active": True},
     ]
