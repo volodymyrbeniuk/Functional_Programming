@@ -55,7 +55,6 @@ def with_salary(emp: Employee, salary: float) -> Employee:
     return new_emp
 
 
-
 def default_bonus_policy(base_pay: float) -> float:
     """Стандартне нарахування бонусу (+10%)."""
     return round(base_pay * 1.10, 2)
