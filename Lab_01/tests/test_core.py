@@ -52,8 +52,9 @@ def test_callable_policies() -> None:
     )
     result = processor(emps)
     assert result["count"] == 2
-    assert isinstance(result["total_payout"], (int, float)) and result["total_payout"] > 0
-
+    assert (
+        isinstance(result["total_payout"], (int, float)) and result["total_payout"] > 0
+    )
 
 
 def test_stamp_total() -> None:
