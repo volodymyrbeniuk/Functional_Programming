@@ -1,45 +1,52 @@
-from collections.abc import Callable, Sequence
+"""Лабораторна робота №1: Функціональне програмування.
+
+Варіант 2.
+"""
+
+from collections.abc import Callable, Iterable
+from decimal import Decimal
 from typing import TypeVar
 
 T = TypeVar("T")
 R = TypeVar("R")
 
 
-def apply_discount(prices: Sequence[float], percent: int) -> list[float]:
-    """Повертає новий список цін зі знижкою."""
-    if percent < 0 or percent > 100:
+def apply_discount(
+    prices: Iterable[Decimal], percent: int
+) -> tuple[Decimal, ...]:
+    """Повертає нові ціни зі знижкою, не змінюючи вхідну колекцію."""
+    if not 0 <= percent <= 100:
         raise ValueError("Знижка має бути від 0 до 100")
 
-    discounted: list[float] = []
-    for price in prices:
-        new_price = price * (1 - percent / 100)
-        discounted.append(round(new_price, 2))
-
-    return discounted
+    multiplier = Decimal(100 - percent) / Decimal(100)
+    return tuple(
+        (price * multiplier).quantize(Decimal("0.01")) for price in prices
+    )
 
 
-def transform_all(values: Sequence[T], func: Callable[[T], R]) -> list[R]:
-    """Застосовує передану функцію до кожного елемента."""
-    result: list[R] = []
-    for v in values:
-        result.append(func(v))
-    return result
+def transform_all(
+    values: Iterable[T], func: Callable[[T], R]
+) -> tuple[R, ...]:
+    """Функція вищого порядку, яка застосовує func до кожного значення."""
+    return tuple(func(val) for val in values)
 
 
-def calculate_total(prices: Sequence[float]) -> float:
-    """Рахує загальну суму цін."""
-    return float(sum(prices))
+def calculate_total(prices: Iterable[Decimal]) -> Decimal:
+    """Обчислює суму цін без побічних ефектів."""
+    return sum(prices, start=Decimal("0.00"))
 
 
 def main() -> None:
-    prices: list[float] = [100.00, 59.90, 40.00]
-
+    """Точка входу для демонстрації роботи функцій."""
+    prices = (Decimal("100.00"), Decimal("59.90"), Decimal("40.00"))
     discounted_prices = apply_discount(prices, 15)
 
     print("Ціни зі знижкою:", discounted_prices)
     print("Загальна сума:", calculate_total(discounted_prices))
-
-    print("Квадрати чисел:", transform_all([1, 2, 3], lambda x: x ** 2))
+    print(
+        "Квадрати чисел:",
+        transform_all((1, 2, 3), lambda number: number**2),
+    )
 
 
 if __name__ == "__main__":
