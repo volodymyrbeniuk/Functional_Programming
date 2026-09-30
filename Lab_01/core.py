@@ -49,20 +49,11 @@ def is_active_employee(emp: Employee) -> bool:
 def with_salary(emp: Employee, salary: float) -> Employee:
     """Повертає новий словник без мутації вхідного об'єкта."""
     rounded_val = round(salary, 2)
-    updated: dict[str, object] = dict(emp)
-    updated["salary"] = rounded_val
-    updated["total"] = rounded_val
-    return Employee(
-        id=int(updated.get("id", 0)),
-        name=str(updated.get("name", "")),
-        hours=float(updated.get("hours", 0.0)),
-        rate=float(updated.get("rate", 0.0)),
-        bonus=float(updated.get("bonus", 0.0)),
-        status=updated.get("status", True),  # type: ignore[arg-type]
-        is_active=bool(updated.get("is_active", True)),
-        total=rounded_val,
-        salary=rounded_val,
-    )
+    new_emp: Employee = {**emp}
+    new_emp["salary"] = rounded_val
+    new_emp["total"] = rounded_val
+    return new_emp
+
 
 
 def default_bonus_policy(base_pay: float) -> float:
