@@ -11,22 +11,16 @@ T = TypeVar("T")
 R = TypeVar("R")
 
 
-def apply_discount(
-    prices: Iterable[Decimal], percent: int
-) -> tuple[Decimal, ...]:
+def apply_discount(prices: Iterable[Decimal], percent: int) -> tuple[Decimal, ...]:
     """Повертає нові ціни зі знижкою, не змінюючи вхідну колекцію."""
     if not 0 <= percent <= 100:
         raise ValueError("Знижка має бути від 0 до 100")
 
     multiplier = Decimal(100 - percent) / Decimal(100)
-    return tuple(
-        (price * multiplier).quantize(Decimal("0.01")) for price in prices
-    )
+    return tuple((price * multiplier).quantize(Decimal("0.01")) for price in prices)
 
 
-def transform_all(
-    values: Iterable[T], func: Callable[[T], R]
-) -> tuple[R, ...]:
+def transform_all(values: Iterable[T], func: Callable[[T], R]) -> tuple[R, ...]:
     """Функція вищого порядку, яка застосовує func до кожного значення."""
     return tuple(func(val) for val in values)
 
