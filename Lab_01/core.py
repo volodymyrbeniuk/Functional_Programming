@@ -4,7 +4,11 @@
 """
 
 from collections.abc import Callable, Iterable
-from typing import TypedDict
+from typing import TypeVar, TypedDict
+
+A = TypeVar("A")
+B = TypeVar("B")
+C = TypeVar("C")
 
 
 class Employee(TypedDict, total=False):
@@ -47,7 +51,7 @@ def default_bonus_policy(base_pay: float, bonus: float) -> float:
 
 
 def default_tax_policy(gross_pay: float) -> float:
-    """Стандартне утримання податку (наприклад, 19.5% ПДФО + військовий збір)."""
+    """Стандартне утримання податку (19.5% ПДФО + військовий збір)."""
     return round(gross_pay * (1.0 - 0.195), 2)
 
 
@@ -79,3 +83,13 @@ def make_payroll_processor(
         }
 
     return process
+
+
+def compose(f: Callable[[B], C], g: Callable[[A], B]) -> Callable[[A], C]:
+    """Функціональна композиція двох функцій: f(g(x))."""
+    return lambda x: f(g(x))
+
+
+apply_bonus = default_bonus_policy
+apply_tax = default_tax_policy
+calculate_salary = calculate_base_pay

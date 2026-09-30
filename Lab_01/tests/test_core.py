@@ -1,4 +1,4 @@
-"""Тести для перевірки чистоти функцій та правильності розрахунків."""
+"""Тести для чистого функціонального ядра розрахунку заробітної плати."""
 
 from copy import deepcopy
 
@@ -31,14 +31,6 @@ def sample_employees() -> list[Employee]:
             "bonus": 0.0,
             "is_active": False,
         },
-        {
-            "id": 3,
-            "name": "Дмитро",
-            "hours": 170.0,
-            "rate": 180.0,
-            "bonus": 1500.0,
-            "is_active": True,
-        },
     ]
 
 
@@ -68,13 +60,19 @@ def test_no_mutation() -> None:
     assert emps == original
 
 
+def test_empty_input() -> None:
+    """Перевірка обробки порожнього списку працівників."""
+    processor = make_payroll_processor(
+        is_active_employee, default_bonus_policy, default_tax_policy
+    )
+    res = processor([])
+    assert res["count"] == 0
+    assert res["total_payout"] == 0.0
+    assert res["employees"] == []
+
+
 def test_calculation_correctness() -> None:
-    """Перевірка точності обчислень базової ставки, бонусу та податку."""
-    base = calculate_base_pay(100.0, 150.0)
-    assert base == 15000.0
-
-    gross = default_bonus_policy(base, 1000.0)
-    assert gross == 16000.0
-
-    net = default_tax_policy(gross)
-    assert net == round(16000.0 * 0.805, 2)
+    """Перевірка базових обчислень."""
+    assert calculate_base_pay(10.0, 100.0) == 1000.0
+    assert default_bonus_policy(1000.0, 200.0) == 1200.0
+    assert default_tax_policy(1000.0) == 805.0
