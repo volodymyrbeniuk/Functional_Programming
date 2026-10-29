@@ -18,7 +18,7 @@
 У `lab.py` реалізовано приклад теми лабораторної: reduce, partial, operator.itemgetter і singledispatch. Приклад запуску для кожної роботи наведено нижче:
 
 ```bash
-python lab7/lab.py
+python Lab_07/lab.py
 ```
 
 ## Висновок

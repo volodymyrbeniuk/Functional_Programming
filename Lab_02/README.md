@@ -9,16 +9,16 @@
 Потрібен Python 3.12+. З кореня репозиторію запустіть:
 
 ```bash
-python lab2/lab.py
+python Lab_02/lab.py
 ```
 
 ## Перевірки
 
 ```bash
-python -m pytest lab2 -q
-python -m black --check lab2
-python -m ruff check lab2
-python -m mypy lab2
+python -m pytest Lab_02 -q
+python -m black --check Lab_02
+python -m ruff check Lab_02
+python -m mypy Lab_02
 ```
 
 Детальний звіт: [report.md](report.md).

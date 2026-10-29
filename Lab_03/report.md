@@ -18,7 +18,7 @@
 У `lab.py` реалізовано приклад теми лабораторної: frozen dataclass, tuple, frozenset і copy-on-write для відображень. Приклад запуску для кожної роботи наведено нижче:
 
 ```bash
-python lab3/lab.py
+python Lab_03/lab.py
 ```
 
 ## Висновок

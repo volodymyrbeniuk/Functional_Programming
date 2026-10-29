@@ -18,7 +18,7 @@
 У `lab.py` реалізовано приклад теми лабораторної: quicksort, randomized select з 1-індексованим рангом та Fibonacci з lru_cache. Приклад запуску для кожної роботи наведено нижче:
 
 ```bash
-python lab4/lab.py
+python Lab_04/lab.py
 ```
 
 ## Висновок
