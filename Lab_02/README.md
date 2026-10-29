@@ -18,7 +18,7 @@ python Lab_02/lab.py
 python -m pytest Lab_02 -q
 python -m black --check Lab_02
 python -m ruff check Lab_02
-python -m mypy Lab_02
+python -m mypy Lab_02/lab.py/lab.py
 ```
 
 Детальний звіт: [report.md](report.md).
