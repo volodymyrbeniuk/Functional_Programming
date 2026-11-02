@@ -4,18 +4,24 @@
 
 Тема: Алгебраїчні типи даних і pattern matching
 
+## Встановлення залежностей
+
+```bash
+python -m pip install -r requirements.txt
+```
+
 ## Запуск
 
 Потрібен Python 3.12+. З кореня репозиторію запустіть:
 
 ```bash
-python Lab_08/lab.py
+python Lab_08/main.py
 ```
 
 ## Перевірки
 
 ```bash
-python -m pytest Lab_08 -q
+python -m pytest Lab_08/tests -q
 python -m black --check Lab_08
 python -m ruff check Lab_08
 python -m mypy Lab_08

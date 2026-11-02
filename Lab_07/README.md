@@ -4,18 +4,24 @@
 
 Тема: functools та operator
 
+## Встановлення залежностей
+
+```bash
+python -m pip install -r requirements.txt
+```
+
 ## Запуск
 
 Потрібен Python 3.12+. З кореня репозиторію запустіть:
 
 ```bash
-python Lab_07/lab.py
+python Lab_07/main.py
 ```
 
 ## Перевірки
 
 ```bash
-python -m pytest Lab_07 -q
+python -m pytest Lab_07/tests -q
 python -m black --check Lab_07
 python -m ruff check Lab_07
 python -m mypy Lab_07

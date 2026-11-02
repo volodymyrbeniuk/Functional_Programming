@@ -16,13 +16,19 @@
 - `fibonacci` використовує `functools.lru_cache`; `fibonacci_naive` залишено для порівняння на невеликих значеннях.
 - `randomized_select` додатково демонструє пошук k-тої порядкової статистики без сортування всієї послідовності.
 
+## Встановлення залежностей
+
+```bash
+python -m pip install -r requirements.txt
+```
+
 ## Запуск
 
 Потрібен Python 3.12 або новіший. Із кореня репозиторію:
 
 ```bash
-python Lab_04/lab.py
-python -m pytest Lab_04 -q
+python Lab_04/main.py
+python -m pytest Lab_04/tests -q
 ```
 
 Перевірки стилю та типів:
